@@ -6,7 +6,11 @@ name: Manual workflow
 # or API.
 on:
   workflow_call:
-  
+      inputs:
+        app_version:
+          required: true
+          type: string
+        
 run-name: ${{ inputs.app_version }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
