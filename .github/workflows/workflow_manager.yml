@@ -13,8 +13,9 @@ jobs:
               run: |
                 echo "action_state=yellow" >> "GITHUB_OUTPUT"
             - id: step2
-              run: |
-                printf '%s\n' "$action_state"
+              env:
+                SELECTED_COLOR: ${{ steps.color-selector.outputs.action_state }}
+              run: echo "The selected color is $SELECTED_COLOR"
     job2:
         needs: job1
         uses: brunmmartins/GithubActionsTest/.github/workflows/manual.yml@main
