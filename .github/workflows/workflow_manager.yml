@@ -1,0 +1,22 @@
+name: Workflow Manager
+
+on:
+  workflow_dispatch:
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        outputs:
+            app_version: ${{ steps.step1.outputs.action_state }}
+        steps:
+            - id: step1
+              run: |
+                echo "action_state=yellow" >> "GITHUB_OUTPUT"
+            - id: step2
+              run: |
+                printf '%s\n' "$action_state"
+    job2:
+        needs: job1
+        uses: brunmmartins/GithubActionsTest/.github/workflows/manual.yml@main
+        with:
+            app_version: ${{ needs.job1.outputs.app_version }}
