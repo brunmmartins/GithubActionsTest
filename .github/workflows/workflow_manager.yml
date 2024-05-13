@@ -3,7 +3,7 @@ name: Workflow Manager
 on:
   workflow_dispatch:
   
-run-name: ${{ needs.job1.outputs.app_version } 
+run-name: ${{ needs.job1.outputs.app_version }} 
 
 jobs:
     job1:
