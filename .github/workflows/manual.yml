@@ -5,11 +5,9 @@ name: Manual workflow
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-  workflow_call:
-      inputs:
-        app_version:
-          required: true
-          type: string
+  workflow_run:
+    workflows: [Workflow Manager]
+    types: [completed]
         
 run-name: ${{ github.run_number }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
