@@ -11,13 +11,14 @@ jobs:
         steps:
             - id: step1
               run: |
-                echo "action_state=yellow" >> GITHUB_OUTPUT
+                echo "action_state=yellow" >> $GITHUB_OUTPUT
             - id: step2
               env:
                 SELECTED_COLOR: $ACTION_STATE
-              run: echo "The selected color is $SELECTED_COLOR"
+              run: echo "The selected color is ${{ steps.step1.outputs.action_state }}
     job2:
         needs: job1
         uses: brunmmartins/GithubActionsTest/.github/workflows/manual.yml@main
         with:
             app_version: ${{ needs.job1.outputs.app_version }}
+        
