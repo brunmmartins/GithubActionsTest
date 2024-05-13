@@ -11,7 +11,7 @@ jobs:
         steps:
             - id: step1
               run: |
-                echo "ACTION_STATE=yellow" >> "GITHUB_OUTPUT"
+                echo "action_state=yellow" >> GITHUB_OUTPUT
             - id: step2
               env:
                 SELECTED_COLOR: $ACTION_STATE
