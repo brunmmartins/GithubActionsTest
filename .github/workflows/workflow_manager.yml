@@ -18,4 +18,12 @@ jobs:
               env:
                 SELECTED_COLOR: ${{ steps.step1.outputs.action_state }}
               run: echo "The selected color is ${{ steps.step1.outputs.action_state }}"
-        
+    job2:
+      needs: job1
+      runs-on: ubuntu-latest
+      steps:
+        - id: step1
+          run: |
+            gh workflow disable "Workflow Manager"
+                
+      
