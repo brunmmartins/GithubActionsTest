@@ -11,10 +11,10 @@ jobs:
         steps:
             - id: step1
               run: |
-                echo "action_state=yellow" >> "GITHUB_OUTPUT"
+                echo "ACTION_STATE=yellow" >> "GITHUB_OUTPUT"
             - id: step2
               env:
-                SELECTED_COLOR: ${{ steps.step1.outputs.action_state }}
+                SELECTED_COLOR: ${{ steps.step1.outputs.ACTION_STATE }}
               run: echo "The selected color is $SELECTED_COLOR"
     job2:
         needs: job1
