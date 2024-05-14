@@ -40,11 +40,11 @@ jobs:
             app_version: ${{ steps.step1.outputs.action_state }}
         steps:
             - id: step1
-              if: ${{ inputs.builder }} == 'Builder1'
+              if: inputs.builder == 'Builder1'
               run: |
                 echo "action_state=yellow" >> $GITHUB_OUTPUT
             - id: step2
-              if: ${{ inputs.builder }} == 'Builder2'
+              if: inputs.builder == 'Builder2'
               run: |
                 echo "action_state=blue" >> $GITHUB_OUTPUT
             - id: step3
