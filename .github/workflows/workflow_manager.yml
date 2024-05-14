@@ -24,7 +24,7 @@ jobs:
       steps:
         - id: step1
           env:
-            GH_TOKEN: ${{secrets.workflow_management}}
+            GH_TOKEN: ${{secrets.WORKFLOW_MANAGEMENT}}
           run: |
             gh api \
               --method POST \
