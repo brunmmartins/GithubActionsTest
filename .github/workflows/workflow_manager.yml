@@ -48,7 +48,6 @@ jobs:
                 then
                   "action_state=blue" >> $GITHUB_OUTPUT
                 fi
-                  echo 
             - id: step3
               env:
                 SELECTED_COLOR: ${{ steps.step1.outputs.action_state }}
