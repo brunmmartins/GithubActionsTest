@@ -39,7 +39,7 @@ jobs:
             - id: step1
               env: 
                 app_counter: ${{ env.APP_BUILDER_COUNTER}}
-                GH_TOKEN: ${{secrets.WORKFLOW_MANAGEMENT}}
+                token: ${{secrets.WORKFLOW_MANAGEMENT}}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
                 gh variable set APP_BUILDER_COUNTER --body "$((++app_counter))"
@@ -57,7 +57,7 @@ jobs:
         - id: step1
           if: ${{ inputs.builder == 'App Builder' }}
           env:
-            GH_TOKEN: ${{secrets.WORKFLOW_MANAGEMENT}}
+            token: ${{secrets.WORKFLOW_MANAGEMENT}}
           run: |
             echo "${{ needs.job1.outputs.app_version }}"
             gh api \
@@ -69,7 +69,7 @@ jobs:
         - id: step2
           if: ${{ inputs.builder == 'Module Builder' }}
           env:
-            GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            token: ${{secrets.WORKFLOW_MANAGEMENT}}
           run: |
             echo "${{ needs.job1.outputs.app_version }}"
             gh api \
