@@ -38,11 +38,11 @@ jobs:
         steps:
             - id: step1
               env: 
-                app_builder_counter: 0
+                app_counter: ${{ vars.app_builder_counter}}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
-                echo "app_builder_counter=$((++app_builder_counter))" >> $GITHUB_ENV
-                echo "color=App Builder | 0.1.$(date +%j).$app_builder_counter | ${{ inputs.environment }}" >> $GITHUB_ENV
+                gh variable set app_builder_counter --body $((++app_counter))
+                echo "color=App Builder | 0.1.$(date +%j).$app_counter | ${{ inputs.environment }}" >> $GITHUB_ENV
             - id: step2
               if: ${{ inputs.builder == 'Module Builder' }}
               run: |
