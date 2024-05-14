@@ -33,8 +33,11 @@ jobs:
     job1:
         name: "Name Resolver"
         runs-on: ubuntu-latest
+        permissions:
+          actions_variables:write
         outputs:
             app_version: ${{ env.color }}
+            GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         steps:
             - id: step1
               env: 
