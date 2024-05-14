@@ -53,13 +53,11 @@ jobs:
       name: ${{ needs.job1.outputs.app_version }}
       needs: job1
       runs-on: ubuntu-latest
-      permissions:
-        actions: write
       steps:
         - id: step1
           if: ${{ inputs.builder == 'App Builder' }}
           env:
-            GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            GH_TOKEN: ${{secrets.WORKFLOW_MANAGEMENT}}
           run: |
             echo "${{ needs.job1.outputs.app_version }}"
             gh api \
