@@ -8,11 +8,8 @@ on:
         required: true
         type: choice
         options:
-          - "Builder1"
-          - "Builder2"
-          - "Builder3"
-          - "Builder4"
-          - "Builder5"
+          - "App Builder"
+          - "Module Builder"
         default: "Builder1"
       environment:
         description: "The deployment environment"
@@ -31,7 +28,8 @@ on:
         default: "Test"
         
 run-name: "${{ inputs.builder }}-${{ github.ref_name }}-${{ inputs.environment }} | #${{ github.run_number }}"
-
+env:
+  app_builder_counter: 1
 jobs:
     job1:
         name: "Name Resolver"
@@ -40,10 +38,12 @@ jobs:
             app_version: ${{ env.color }}
         steps:
             - id: step1
-              if: ${{ inputs.builder == 'Builder1' }}
-              run: echo "color=App Builder" >> $GITHUB_ENV
+              if: ${{ inputs.builder == 'App Builder' }}
+              run: |
+                echo "$((++app_builder_counter))"
+                echo "color=App Builder | 0.1.$(date +%j)." >> $GITHUB_ENV
             - id: step2
-              if: ${{ inputs.builder == 'Builder2' }}
+              if: ${{ inputs.builder == 'Module Builder' }}
               run: echo "color=Module Builder" >> $GITHUB_ENV
     job2:
       name: ${{ needs.job1.outputs.app_version }}
