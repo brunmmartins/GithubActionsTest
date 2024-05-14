@@ -38,7 +38,7 @@ jobs:
         steps:
             - id: step1
               env: 
-                app_counter: ${{ vars.APP_BUILDER_COUNTER}}
+                app_counter: ${{ env.APP_BUILDER_COUNTER}}
                 GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
