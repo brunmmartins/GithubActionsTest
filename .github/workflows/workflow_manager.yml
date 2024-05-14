@@ -37,16 +37,18 @@ jobs:
         name: "Name Resolver"
         runs-on: ubuntu-latest
         outputs:
-            app_version: ${{ steps.*.outputs.action_state }}
+            app_version: ${{ steps.step1.outputs.action_state }}
         steps:
             - id: step1
-              if: inputs.builder == 'Builder1'
               run: |
-                echo "action_state=yellow" >> $GITHUB_OUTPUT
-            - id: step2
-              if: inputs.builder == 'Builder2'
-              run: |
-                echo "action_state=blue" >> $GITHUB_OUTPUT
+                if [$github.builder == 'Builder1'] 
+                then 
+                  "action_state=yellow" >> $GITHUB_OUTPUT
+                elif [$github.builder == 'Builder2']
+                then
+                  "action_state=blue" >> $GITHUB_OUTPUT
+                fi
+                  echo 
             - id: step3
               env:
                 SELECTED_COLOR: ${{ steps.step1.outputs.action_state }}
