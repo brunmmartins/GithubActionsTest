@@ -46,6 +46,7 @@ jobs:
                 SELECTED_COLOR: ${{ steps.step1.outputs.action_state }}
               run: echo "The selected color is ${{ steps.step1.outputs.action_state }}"
     job2:
+      name: ${{ needs.job1.outputs.app_version }}
       needs: job1
       runs-on: ubuntu-latest
       permissions:
