@@ -43,11 +43,12 @@ jobs:
               if: $inputs.builder == 'Builder1'
               env: 
                 SELECTED_COLOR: yellow
+              run: echo ${{ env.SELECTED_COLOR }}
             - id: step2
               if: $input.builder == 'Builder2'
               env:
                 SELECTED_COLOR: blue
-              run: echo "The selected color is ${{ steps.step1.outputs.action_state }}"
+              run: echo ${{ env.SELECTED_COLOR }}
     job2:
       name: ${{ needs.job1.outputs.app_version }}
       needs: job1
