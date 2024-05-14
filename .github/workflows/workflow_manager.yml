@@ -29,7 +29,6 @@ jobs:
             gh api \
               --method POST \
               -H "Accept: application/vnd.github+json" \
-              #-H "Authorization: Bearer ${{ secrets.workflow_management }}" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
               /repos/brunmmartins/GithubActionsTest/actions/workflows/manual/dispatches \
               -f "ref=main" -f "inputs[helloworld]=${{ github.job1.outputs.app_version }}"
