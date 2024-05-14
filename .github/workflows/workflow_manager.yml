@@ -42,7 +42,7 @@ jobs:
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
                 echo "APP_BUILDER_COUNTER=$((++APP_BUILDER_COUNTER))" >> $GITHUB_ENV
-                echo "color=App Builder | 0.1.$(date +%j).$app_counter | ${{ inputs.environment }}" >> $GITHUB_ENV
+                echo "color=App Builder | 0.1.$(date +%j).$APP_BUILDER_COUNTER | ${{ inputs.environment }}" >> $GITHUB_ENV
             - id: step2
               if: ${{ inputs.builder == 'Module Builder' }}
               run: |
