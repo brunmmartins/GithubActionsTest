@@ -37,6 +37,8 @@ jobs:
             app_version: ${{ env.color }}
         steps:
             - id: step1
+              env: 
+                app_builder_counter: 0
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
                 echo "app_builder_counter=$((++app_builder_counter))" >> $GITHUB_ENV
