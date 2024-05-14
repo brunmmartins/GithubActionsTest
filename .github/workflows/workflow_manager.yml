@@ -23,6 +23,8 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - id: step1
+          env: 
+            GH_TOKEN: ${{ secrets.workflow_management }}
           run: |
             gh api \
               --method POST \
