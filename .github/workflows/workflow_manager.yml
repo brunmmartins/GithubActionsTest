@@ -34,7 +34,7 @@ run-name: "${{ inputs.builder }}-${{ github.ref_name }}-${{ inputs.environment }
 
 jobs:
     job1:
-        name: ${{ steps.step1.outputs.action_state }}
+        name: "Name Resolver"
         runs-on: ubuntu-latest
         outputs:
             app_version: ${{ steps.step1.outputs.action_state }}
