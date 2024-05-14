@@ -2,8 +2,35 @@ name: Workflow Manager
 
 on:
   workflow_dispatch:
+    inputs:
+      builder:
+        description: "Builders"
+        required: true
+        type: choice
+        options:
+          - "Builder1"
+          - "Builder2"
+          - "Builder3"
+          - "Builder4"
+          - "Builder5"
+        default: "Builder1"
+      environment:
+        description: "The deployment environment"
+        required: true
+        type: choice
+        options:
+          - "Environment 1"
+          - "Environment 2"
+          - "Environment 3"
+          - "Environment 4"
+          - "Environment 5"
+        default: "Environment1"
+      changelog:
+        description: "Built app changelog"
+        required: true
+        default: "Test"
         
-run-name: ${{ github.job1.outputs.app_version }} 
+run-name: "${{ inputs.builder }}-${{ github.ref_name }}-${{ inputs.environment }} | #${{ github.run_number }}"
 
 jobs:
     job1:
@@ -34,6 +61,6 @@ jobs:
               -H "Accept: application/vnd.github+json" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
               /repos/brunmmartins/GithubActionsTest/actions/workflows/manual.yml/dispatches \
-              -f "ref=main" -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}"
+              -f "ref=${{ github.ref_name }}" -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}"
                 
       
