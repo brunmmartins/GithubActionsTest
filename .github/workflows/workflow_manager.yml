@@ -40,12 +40,12 @@ jobs:
             app_version: ${{ env.SELECTED_COLOR }}
         steps:
             - id: step1
-              if: $inputs.builder == 'Builder1'
+              if: ${{ inputs.builder }} == 'Builder1'
               env: 
                 SELECTED_COLOR: yellow
               run: echo ${{ env.SELECTED_COLOR }}
             - id: step2
-              if: $inputs.builder == 'Builder2'
+              if: ${{ inputs.builder }} == 'Builder2'
               env:
                 SELECTED_COLOR: blue
               run: echo ${{ env.SELECTED_COLOR }}
