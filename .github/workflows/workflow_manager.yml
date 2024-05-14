@@ -70,11 +70,11 @@ jobs:
       runs-on: ubuntu-latest
       permissions:
         actions: write
+      env:
+        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       steps:
         - id: step1
           if: ${{ inputs.builder == 'App Builder' }}
-          env:
-            GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           run: |
             echo "${{ needs.job1.outputs.app_version }}"
             gh api \
@@ -85,8 +85,6 @@ jobs:
               -f "ref=${{ github.ref_name }}" -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}"
         - id: step2
           if: ${{ inputs.builder == 'Module Builder' }}
-          env:
-            GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           run: |
             echo "${{ needs.job1.outputs.app_version }}"
             gh api \
