@@ -42,7 +42,6 @@ jobs:
             - id: step1
               run: |
                 if [ '${{ inputs.builder }}' == 'Builder1']; then "action_state=yellow" >> $GITHUB_OUTPUT fi
-                if [ '${{ inputs.builder }}' == 'Builder2']; then "action_state=blue" >> $GITHUB_OUTPUT fi
             - id: step2
               env:
                 SELECTED_COLOR: ${{ steps.step1.outputs.action_state }}
@@ -85,4 +84,3 @@ jobs:
               -H "X-GitHub-Api-Version: 2022-11-28" \
               /repos/brunmmartins/GithubActionsTest/actions/workflows/manual.yml/dispatches \
               -f "ref=${{ github.ref_name }}" -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}"
-        
