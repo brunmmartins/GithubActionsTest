@@ -55,7 +55,7 @@ jobs:
         actions: write
       steps:
         - id: step1
-          if: ${{ inputs.builder == 'Builder1' }}
+          if: ${{ inputs.builder == 'App Builder' }}
           env:
             GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           run: |
@@ -67,7 +67,7 @@ jobs:
               /repos/brunmmartins/GithubActionsTest/actions/workflows/manual.yml/dispatches \
               -f "ref=${{ github.ref_name }}" -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}"
         - id: step2
-          if: ${{ inputs.builder == 'Builder2' }}
+          if: ${{ inputs.builder == 'Module Builder' }}
           env:
             GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           run: |
