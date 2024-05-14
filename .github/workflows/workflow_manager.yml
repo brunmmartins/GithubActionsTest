@@ -37,7 +37,7 @@ jobs:
         name: "Name Resolver"
         runs-on: ubuntu-latest
         outputs:
-            app_version: ${{ env.SELECTED_COLOR }}
+            app_version: ${{ steps.env.SELECTED_COLOR }}
         steps:
             - id: step1
               if: ${{ inputs.builder }} == 'Builder1'
@@ -86,4 +86,4 @@ jobs:
               -H "Accept: application/vnd.github+json" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
               /repos/brunmmartins/GithubActionsTest/actions/workflows/manual.yml/dispatches \
-              -f "ref=${{ github.ref_name }}" -f "inputs[helloworld]=${{ env.SELECTED_COLOR }}"
+              -f "ref=${{ github.ref_name }}" -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}"
