@@ -33,6 +33,6 @@ jobs:
               -H "Accept: application/vnd.github+json" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
               /repos/brunmmartins/GithubActionsTest/actions/workflows/manual.yml/dispatches \
-              -f "ref=main" -f "inputs[helloworld]=${{ github.job1.outputs.app_version }}"
+              -f "ref=main" -f "helloworld=${{ github.job1.outputs.app_version }}"
                 
       
