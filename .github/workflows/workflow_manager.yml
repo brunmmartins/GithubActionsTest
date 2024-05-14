@@ -39,7 +39,7 @@ jobs:
             - id: step1
               env: 
                 app_counter: ${{ env.APP_BUILDER_COUNTER}}
-                GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+                GH_TOKEN: ${{secrets.WORKFLOW_MANAGEMENT}}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
                 gh variable set APP_BUILDER_COUNTER --body "$((++app_counter))"
