@@ -6,11 +6,6 @@ name: Manual workflow
 # or API.
 on:
   workflow_dispatch:
-    inputs:
-      helloworld:
-        description: 'Test scenario tags'
-        required: true
-        type: string
     #workflows: [Workflow Manager]
     #types: [completed]
         
