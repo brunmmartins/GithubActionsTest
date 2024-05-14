@@ -41,11 +41,8 @@ jobs:
         steps:
             - id: step1
               run: |
-                if [ '${{ inputs.builder }}' == 'Builder1']; then 
-                "action_state=yellow" >> $GITHUB_OUTPUT
-                elif [ '${{ inputs.builder }}' == 'Builder2']; then
-                "action_state=blue" >> $GITHUB_OUTPUT
-                fi
+                if [ '${{ inputs.builder }}' == 'Builder1']; then "action_state=yellow" >> $GITHUB_OUTPUT fi
+                if [ '${{ inputs.builder }}' == 'Builder2']; then "action_state=blue" >> $GITHUB_OUTPUT fi
             - id: step3
               env:
                 SELECTED_COLOR: ${{ steps.step1.outputs.action_state }}
