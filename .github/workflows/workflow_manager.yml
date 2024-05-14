@@ -28,12 +28,12 @@ jobs:
           env:
             GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           run: |
-            echo "${{ github.job1.outputs.app_version }}"
+            echo "${{ needs.job1.outputs.app_version }}"
             gh api \
               --method POST \
               -H "Accept: application/vnd.github+json" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
               /repos/brunmmartins/GithubActionsTest/actions/workflows/manual.yml/dispatches \
-              -f "ref=main" -f "inputs[helloworld]=${{ env.NAME }}"
+              -f "ref=main" -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}"
                 
       
