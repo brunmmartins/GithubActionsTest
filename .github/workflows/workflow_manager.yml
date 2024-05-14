@@ -37,7 +37,7 @@ jobs:
         name: "Name Resolver"
         runs-on: ubuntu-latest
         outputs:
-            app_version: $color
+            app_version: ${{ env.color }}
         steps:
             - id: step1
               if: ${{ inputs.builder == 'Builder1' }}
