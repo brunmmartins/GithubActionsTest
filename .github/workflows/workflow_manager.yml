@@ -27,7 +27,7 @@ on:
         required: true
         default: "Test"
         
-run-name: "${{ inputs.builder }}-${{ github.ref_name }}-${{ inputs.environment }} | #${{ github.run_number }}"
+run-name: "${{ inputs.builder }} | ${{ github.ref_name }} | ${{ inputs.environment }} | #${{ github.run_number }}"
 
 jobs:
     job1:
