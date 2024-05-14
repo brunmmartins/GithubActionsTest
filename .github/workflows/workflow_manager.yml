@@ -28,9 +28,7 @@ on:
         default: "Test"
         
 run-name: "${{ inputs.builder }}-${{ github.ref_name }}-${{ inputs.environment }} | #${{ github.run_number }}"
-env:
-  app_builder_counter: 1
-  module_builder_counter: 1
+
 jobs:
     job1:
         name: "Name Resolver"
@@ -41,12 +39,13 @@ jobs:
             - id: step1
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
+                echo "app_builder_counter=$((++app_builder_counter))" >> $GITHUB_ENV
                 echo "color=App Builder | 0.1.$(date +%j).$app_builder_counter | ${{ inputs.environment }}" >> $GITHUB_ENV
-                echo "$((++app_builder_counter))"
             - id: step2
               if: ${{ inputs.builder == 'Module Builder' }}
-              run: | 
-                echo "color=Module Builder | 0.1.$(date +%j).$app_builder_counter | ${{ inputs.environment }}" >> $GITHUB_ENV
+              run: |
+                echo "module_builder_counter=$((++module_builder_counter))" >> $GITHUB_ENV
+                echo "color=Module Builder | 0.1.$(date +%j).$module_builder_counter | ${{ inputs.environment }}" >> $GITHUB_ENV
     job2:
       name: ${{ needs.job1.outputs.app_version }}
       needs: job1
