@@ -44,7 +44,7 @@ jobs:
                 GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
-                gh variable set app_builder_counter --body $((++app_counter))
+                gh variable set app_builder_counter --body $((++app_counter)) -o environment
                 echo "color=App Builder | 0.1.$(date +%j).$app_counter | ${{ inputs.environment }}" >> $GITHUB_ENV
             - id: step2
               if: ${{ inputs.builder == 'Module Builder' }}
