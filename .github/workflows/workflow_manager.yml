@@ -33,15 +33,13 @@ jobs:
     job1:
         name: "Name Resolver"
         runs-on: ubuntu-latest
-        permissions:
-          actions: write
         outputs:
             app_version: ${{ env.color }}
         steps:
             - id: step1
               env: 
                 app_counter: ${{ env.APP_BUILDER_COUNTER}}
-                GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+                GH_TOKEN: ${{ secrets.workflow_management }}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
                 gh api \
