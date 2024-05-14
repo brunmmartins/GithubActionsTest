@@ -33,15 +33,15 @@ jobs:
     job1:
         name: "Name Resolver"
         runs-on: ubuntu-latest
-        permissions:
-          actions_variables:write
         outputs:
             app_version: ${{ env.color }}
-            GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        permissions:
+          actions: write
         steps:
             - id: step1
               env: 
                 app_counter: ${{ vars.app_builder_counter}}
+                GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
                 gh variable set app_builder_counter --body $((++app_counter))
