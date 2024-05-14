@@ -45,7 +45,7 @@ jobs:
                 SELECTED_COLOR: yellow
               run: echo ${{ env.SELECTED_COLOR }}
             - id: step2
-              if: $input.builder == 'Builder2'
+              if: $inputs.builder == 'Builder2'
               env:
                 SELECTED_COLOR: blue
               run: echo ${{ env.SELECTED_COLOR }}
