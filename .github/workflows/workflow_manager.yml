@@ -19,11 +19,11 @@ on:
         required: true
         type: choice
         options:
-          - "Environment 1"
-          - "Environment 2"
-          - "Environment 3"
-          - "Environment 4"
-          - "Environment 5"
+          - "Environment1"
+          - "Environment2"
+          - "Environment3"
+          - "Environment4"
+          - "Environment5"
         default: "Environment1"
       changelog:
         description: "Built app changelog"
@@ -40,15 +40,40 @@ jobs:
             app_version: ${{ steps.step1.outputs.action_state }}
         steps:
             - id: step1
+              if: ${{ inputs.builder }} == 'Builder1'
               run: |
                 echo "action_state=yellow" >> $GITHUB_OUTPUT
             - id: step2
+              if: ${{ inputs.builder }} == 'Builder2'
+              run: |
+                echo "action_state=blue" >> $GITHUB_OUTPUT
+            - id: step3
               env:
                 SELECTED_COLOR: ${{ steps.step1.outputs.action_state }}
               run: echo "The selected color is ${{ steps.step1.outputs.action_state }}"
     job2:
       name: ${{ needs.job1.outputs.app_version }}
       needs: job1
+      if: ${{ inputs.builder }} == 'Builder1'
+      runs-on: ubuntu-latest
+      permissions:
+        actions: write
+      steps:
+        - id: step1
+          env:
+            GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          run: |
+            echo "${{ needs.job1.outputs.app_version }}"
+            gh api \
+              --method POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              /repos/brunmmartins/GithubActionsTest/actions/workflows/manual.yml/dispatches \
+              -f "ref=${{ github.ref_name }}" -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}
+    job3:
+      name: ${{ needs.job1.outputs.app_version }}
+      needs: job1
+      if: ${{ inputs.builder }} == 'Builder2'
       runs-on: ubuntu-latest
       permissions:
         actions: write
@@ -64,5 +89,4 @@ jobs:
               -H "X-GitHub-Api-Version: 2022-11-28" \
               /repos/brunmmartins/GithubActionsTest/actions/workflows/manual.yml/dispatches \
               -f "ref=${{ github.ref_name }}" -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}"
-                
-      
+        
