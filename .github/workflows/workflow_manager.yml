@@ -55,7 +55,7 @@ jobs:
     job2:
       name: ${{ needs.job1.outputs.app_version }}
       needs: job1
-      if: $inputs.builder == 'Builder1'
+      if: ${{ inputs.builder }} == 'Builder1'
       runs-on: ubuntu-latest
       permissions:
         actions: write
@@ -74,7 +74,7 @@ jobs:
     job3:
       name: ${{ needs.job1.outputs.app_version }}
       needs: job1
-      if: $inputs.builder == 'Builder2'
+      if: ${{ inputs.builder }} == 'Builder2'
       runs-on: ubuntu-latest
       permissions:
         actions: write
