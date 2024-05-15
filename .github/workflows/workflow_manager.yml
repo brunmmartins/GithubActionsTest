@@ -44,15 +44,16 @@ jobs:
             - id: step1
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
+                $a=fromJSON('{"Environment1":"John", 	"Environment2":30 }')
+                echo $a.Environment1
                 $app_counter=[int]${{ vars.APP_BUILDER_COUNTER }} + 1
+                echo "color=App Builder | 0.1.$(Get-Date -UFormat "%j").${{ vars.APP_BUILDER_COUNTER }} | ${{ inputs.environment }}" >> $env:GITHUB_ENV
                 gh api `
                 -X PATCH `
                 -H "Accept: application/vnd.github+json" `
                 -H "X-GitHub-Api-Version: 2022-11-28" `
                 /repos/brunmmartins/GithubActionsTest/actions/variables/APP_BUILDER_COUNTER `
                 -f "name=APP_BUILDER_COUNTER" -f "value=$app_counter"
-                echo "color=App Builder | 0.1.$(Get-Date -UFormat "%j").${{ vars.APP_BUILDER_COUNTER }} | ${{ inputs.environment }}"
-                echo "color=App Builder | 0.1.$(Get-Date -UFormat "%j").${{ vars.APP_BUILDER_COUNTER }} | ${{ inputs.environment }}" >> $env:GITHUB_ENV
             - id: step2
               env:
                 module_counter: ${{ vars.MODULE_BUILDER_COUNTER }}
