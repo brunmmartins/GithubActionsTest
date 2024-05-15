@@ -42,10 +42,9 @@ jobs:
           GH_TOKEN: ${{ secrets.workflow_management }}
         steps:
             - id: step1
-              env: 
-                app_counter: ${{ vars.APP_BUILDER_COUNTER}}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
+                $app_counter=${{ vars.APP_BUILDER_COUNTER}}
                 gh api `
                 -X PATCH `
                 -H "Accept: application/vnd.github+json" `
