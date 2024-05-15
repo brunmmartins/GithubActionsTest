@@ -46,7 +46,7 @@ jobs:
                 app_counter: ${{ vars.APP_BUILDER_COUNTER}}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
-                $Uri='https://www.github.com/repos/brunmmartins/GithubActionsTest/actions/variables/APP_BUILDER_COUNTER'
+                $Uri='https://api.github.com/repos/brunmmartins/GithubActionsTest/actions/variables/APP_BUILDER_COUNTER'
                 $headers=@{
                     'Content-Type'='application/json'
                     'Accept'='application/vnd.github+json'
