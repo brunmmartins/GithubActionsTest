@@ -48,6 +48,7 @@ jobs:
                 $env_counter = [int]$($app_builder_counters.${{ inputs.environment }}) + 1
                 echo "color=App Builder | 0.1.$(Get-Date -UFormat "%j").[int]$env_counter | ${{ inputs.environment }}" >> $env:GITHUB_ENV
                 $json = ConvertTo-Json $app_builder_counters | add-member -Name ${{ inputs.environment }} -value $env_counter -MemberType NoteProperty -Force
+                echo $json
                 gh api `
                 -X PATCH `
                 -H "Accept: application/vnd.github+json" `
