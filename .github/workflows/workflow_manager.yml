@@ -51,7 +51,8 @@ jobs:
                 -H "Accept: application/vnd.github+json"
                 -H "X-GitHub-Api-Version: 2022-11-28"
                 /repos/brunmmartins/GithubActionsTest/actions/variables/APP_BUILDER_COUNTER
-                -f "name=APP_BUILDER_COUNTER" -f "value=$((++$Env.app_counter))'@
+                -f "name=APP_BUILDER_COUNTER" -f "value=$((++$Env.app_counter))
+                '@
                 echo "color=Module Builder | 0.1.$(date +%j).${{ vars.APP_BUILDER_COUNTER }} | ${{ inputs.environment }}" >> $GITHUB_ENV
             - id: step2
               env:
