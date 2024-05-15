@@ -53,7 +53,7 @@ jobs:
                 /repos/brunmmartins/GithubActionsTest/actions/variables/APP_BUILDER_COUNTER 
                 -f "name=APP_BUILDER_COUNTER" -f "value=${{ env.app_counter }}++"
                 '@
-                echo "color=Module Builder | 0.1.$(Get-Date -UFormat "%j").${{ vars.APP_BUILDER_COUNTER }} | ${{ inputs.environment }}" >> $GITHUB_ENV
+                # echo "color=Module Builder | 0.1.$(Get-Date -UFormat "%j").${{ vars.APP_BUILDER_COUNTER }} | ${{ inputs.environment }}" >> $GITHUB_ENV
             - id: step2
               env:
                 module_counter: ${{ vars.MODULE_BUILDER_COUNTER }}
