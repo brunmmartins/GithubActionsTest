@@ -65,6 +65,7 @@ jobs:
                 echo "color=0.1.$(Get-Date -UFormat "%j").$env_counter" >> $env:GITHUB_ENV
                 $json_object | add-member -Name "${{ inputs.environment }}" -value $env_counter -MemberType NoteProperty -Force
                 $json = ConvertTo-Json $json_object
+                
                 gh api `
                 -X PATCH `
                 -H "Accept: application/vnd.github+json" `
@@ -85,6 +86,7 @@ jobs:
                 echo "color=0.1.$(Get-Date -UFormat "%j").$env_counter" >> $env:GITHUB_ENV
                 $json_object | add-member -Name "${{ inputs.environment }}" -value $env_counter -MemberType NoteProperty -Force
                 $json = ConvertTo-Json $json_object
+                
                 gh api `
                 -X PATCH `
                 -H "Accept: application/vnd.github+json" `
