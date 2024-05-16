@@ -47,7 +47,7 @@ jobs:
                 $app_builder_counters = ${{ vars.APP_BUILDER_COUNTER }} | ConvertFrom-Json 
                 $env_counter = [int]$($app_builder_counters."${{ inputs.environment }}") + 1
                 echo "color=App Builder | 0.1.$(Get-Date -UFormat "%j").$env_counter | ${{ inputs.environment }}" >> $env:GITHUB_ENV
-                add-member -InputObject $app_builder_counters -Name "${{ inputs.environment }}" -value "1" -MemberType NoteProperty -Force
+                $app_builder_counters | add-member -Name "${{ inputs.environment }}" -value $env_counter -MemberType NoteProperty -Force
                 $json = ConvertTo-Json $app_builder_counters
                 echo $json
             - id: step2
