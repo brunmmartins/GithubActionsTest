@@ -47,7 +47,7 @@ jobs:
         name: "Name Resolver"
         runs-on: windows-latest
         concurrency:
-          group: ${{inputs.builder}}-name-resolver
+          group: ${{inputs.builder}}-${{ inputs.environment }}-name-resolver
         outputs:
             app_version: ${{ env.color }}
         steps:
