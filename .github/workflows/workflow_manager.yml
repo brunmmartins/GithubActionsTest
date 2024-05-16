@@ -38,10 +38,10 @@ jobs:
         runs-on: windows-latest
         outputs:
             app_version: ${{ env.color }}
-        env:
-          GH_TOKEN: ${{ secrets.workflow_management }}
         steps:
             - id: step1
+              env:
+                GH_TOKEN: ${{ secrets.workflow_management }}
               if: ${{ inputs.builder == 'App Builder' }}
               run: |
                 $app_builder_counters = '${{ vars.APP_BUILDER_COUNTER }}' | ConvertFrom-Json 
