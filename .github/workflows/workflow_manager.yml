@@ -16,7 +16,7 @@ on:
         default: "Builder1"
       environment:
         description: "The deployment environment"
-        required: false
+        required: true
         type: choice
         options:
           - "Environment1"
@@ -34,7 +34,7 @@ on:
           - "Module2"
           - "Module3"
           - "Module4"
-        default: "Module1"
+        default: ""
       changelog:
         description: "Built app changelog"
         required: true
