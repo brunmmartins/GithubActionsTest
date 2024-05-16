@@ -68,7 +68,7 @@ jobs:
                   -f "name=MODULE_BUILDER_COUNTER" -f "value=$((++module_counter))"
                 echo "color=Module Builder | 0.1.$(date +%j).${{ vars.MODULE_BUILDER_COUNTER }} | ${{ inputs.environment }}" >> $GITHUB_ENV
     job2:
-      name: App Builder | ${{ needs.job1.outputs.app_version }} | ${{ inputs.environment }}
+      name: ${{ needs.job1.outputs.app_version }} | ${{ inputs.environment }}
       needs: job1
       runs-on: windows-latest
       permissions:
