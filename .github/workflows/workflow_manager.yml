@@ -16,10 +16,11 @@ on:
         default: "App Builder"
       environment:
         description: "The deployment environment"
-        required: true
+        required: false
         type: choice
         options:
           - ""
+          - "Environment1"
           - "Environment2"
           - "Environment3"
           - "Environment4"
@@ -31,6 +32,7 @@ on:
         type: choice
         options:
           - ""
+          - "Module1"
           - "Module2"
           - "Module3"
           - "Module4"
