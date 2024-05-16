@@ -34,7 +34,7 @@ on:
           - "Module2"
           - "Module3"
           - "Module4"
-        default: ""
+        default: "Module1"
       changelog:
         description: "Built app changelog"
         required: true
