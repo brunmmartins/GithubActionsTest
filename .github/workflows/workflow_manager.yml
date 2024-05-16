@@ -19,12 +19,12 @@ on:
         required: true
         type: choice
         options:
-          - "Environment1"
+          - ""
           - "Environment2"
           - "Environment3"
           - "Environment4"
           - "Environment5"
-        default: "Environment1"
+        default: ""
       module_name:
         description: "The deployment environment"
         required: false
