@@ -13,7 +13,7 @@ on:
         options:
           - "App Builder"
           - "Module Builder"
-        default: "Builder1"
+        default: "App Builder"
       environment:
         description: "The deployment environment"
         required: true
