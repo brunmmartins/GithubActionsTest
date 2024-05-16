@@ -10,10 +10,24 @@ on:
         description: 'Test scenario tags'
         required: true
         type: string
+      environment:
+        description: 'Test scenario tags'
+        required: true
+        type: string
+      module_name:
+        description: "The module to build"
+        required: true
+        type: choice
+        options:
+          - "Module1"
+          - "Module2"
+          - "Module3"
+          - "Module4"
+        default: "Module1"
     #workflows: [Workflow Manager]
     #types: [completed]
         
-run-name: ${{ inputs.helloworld }}
+run-name: Module Builder | ${{ inputs.module_name }} | ${{ inputs.helloworld }} | ${{ inputs.environment }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "greet"
