@@ -73,7 +73,7 @@ jobs:
                 -f "name=APP_BUILDER_COUNTER" -f "value=$json"
             - id: step2
               env:
-                module_counter: ${{ vars.MODULE_BUILDER_COUNTER }}
+                GH_TOKEN: ${{ secrets.workflow_management }}
               if: ${{ inputs.builder == 'Module Builder' }}
               run: |                
                 $module_builder_counters=$(gh api `
