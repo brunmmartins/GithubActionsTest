@@ -76,7 +76,7 @@ jobs:
                 /repos/brunmmartins/GithubActionsTest/actions/variables/APP_BUILDER_COUNTER `
                 -f "name=APP_BUILDER_COUNTER" -f "value=$json"
                 
-                $env:ERROR = 0
+                $ERROR=0
             - id: step2
               env:
                 GH_TOKEN: ${{ secrets.workflow_management }}
@@ -99,10 +99,10 @@ jobs:
                 /repos/brunmmartins/GithubActionsTest/actions/variables/MODULE_BUILDER_COUNTER `
                 -f "name=MODULE_BUILDER_COUNTER" -f "value=$json"
                 
-                $env:ERROR = 0
+                $ERROR=0
             - id: step3
               name: 'Checks build for errors'
-              run: exit ${{ $env:ERROR }}
+              run: exit ${{ ${{ env.ERROR }} }}
     job2:
       name: ${{ needs.job1.outputs.app_version }} | ${{ inputs.environment }}
       needs: job1
@@ -124,7 +124,7 @@ jobs:
               -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}" `
               -f "inputs[environment]=${{ inputs.environment }}"
               
-              $env:ERROR = 0
+              $ERROR=0
         - id: step2
           if: ${{ inputs.builder == 'Module Builder' && inputs.module_name != null }}
           run: |
@@ -138,8 +138,8 @@ jobs:
               -f "inputs[environment]=${{ inputs.environment }}" `
               -f "inputs[module_name]=${{ inputs.module_name }}"
 
-              $env:ERROR = 0
+              $ERROR=0
         - id: step3
           name: 'Checks build for errors'
-          run: exit ${{ $env:ERROR }}
+          run: exit ${{ ${{ env.ERROR }} }}
             
