@@ -116,7 +116,7 @@ jobs:
               -f "inputs[helloworld]=${{ needs.job1.outputs.app_version }}" `
               -f "inputs[environment]=${{ inputs.environment }}"
         - id: step2
-          if: ${{ inputs.builder == 'Module Builder' }}
+          if: ${{ inputs.builder == 'Module Builder' && inputs.module_name != null }}
           run: |
               gh api `
               -X POST `
