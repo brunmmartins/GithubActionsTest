@@ -84,9 +84,9 @@ jobs:
                 -H "X-GitHub-Api-Version: 2022-11-28" `
                 /repos/brunmmartins/GithubActionsTest/actions/variables/MODULE_BUILDER_COUNTER) | convertfrom-json
                 $json_object = $module_builder_counters.value | convertfrom-json
-                $env_counter = [int]$($json_object."${{ inputs.environment }}") + 1
+                $env_counter = [int]$($json_object."${{ inputs.module_name }}-"${{ inputs.environment }}") + 1
                 echo "color=0.1.$(Get-Date -UFormat "%j").$env_counter" >> $env:GITHUB_ENV
-                $json_object | add-member -Name "${{ inputs.environment }}" -value $env_counter -MemberType NoteProperty -Force
+                $json_object | add-member -Name "${{ inputs.module_name }}-${{ inputs.environment }}" -value $env_counter -MemberType NoteProperty -Force
                 $json = ConvertTo-Json $json_object
                 
                 gh api `
