@@ -16,7 +16,7 @@ on:
         default: "App Builder"
       environment:
         description: "The deployment environment"
-        required: false
+        required: true
         type: choice
         options:
           - ""
