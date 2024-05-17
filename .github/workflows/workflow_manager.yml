@@ -56,7 +56,7 @@ jobs:
             - id: step1
               env:
                 GH_TOKEN: ${{ secrets.workflow_management }}
-              if: ${{ inputs.builder == 'App Builder' && inputs.module_name != "" }}
+              if: ${{ inputs.builder == 'App Builder' && inputs.module_name != null }}
               run: |
                 $app_builder_counters=$(gh api `
                 -H "Accept: application/vnd.github+json" `
