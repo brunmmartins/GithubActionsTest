@@ -48,10 +48,11 @@ jobs:
     job1:
         name: "Name Resolver"
         runs-on: windows-latest
-        #concurrency:
-          #group: ${{inputs.builder}}-${{ inputs.environment }}-name-resolver
+        concurrency:
+          group: ${{inputs.builder}}-${{ inputs.environment }}-name-resolver
         outputs:
             app_version: ${{ env.color }}
+            cancel-in-progress: true
         steps:
             - id: step1
               env:
