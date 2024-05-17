@@ -102,7 +102,7 @@ jobs:
                 $ERROR=0
             - id: step3
               name: 'Checks build for errors'
-              run: exit ${{ ${{ env.ERROR }} }}
+              run: exit ${{ env.ERROR }}
     job2:
       name: ${{ needs.job1.outputs.app_version }} | ${{ inputs.environment }}
       needs: job1
@@ -141,5 +141,5 @@ jobs:
               $ERROR=0
         - id: step3
           name: 'Checks build for errors'
-          run: exit ${{ ${{ env.ERROR }} }}
+          run: exit ${{env.ERROR }}
             
