@@ -50,9 +50,9 @@ jobs:
         runs-on: windows-latest
         concurrency:
           group: ${{inputs.builder}}-${{ inputs.environment }}-name-resolver
+          cancel-in-progress: true
         outputs:
             app_version: ${{ env.color }}
-            cancel-in-progress: true
         steps:
             - id: step1
               env:
