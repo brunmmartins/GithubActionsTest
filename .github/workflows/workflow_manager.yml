@@ -1,9 +1,6 @@
 name: Workflow Manager
 
 on:
-  schedule:
-    - cron: '30 21 * * *'
-    
   workflow_dispatch:
     inputs:
       builder:
